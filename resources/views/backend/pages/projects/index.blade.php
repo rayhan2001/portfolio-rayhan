@@ -10,10 +10,9 @@
                 <li class="breadcrumb-item active">Project</li>
             </ol>
         </nav>
-        <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+        <a href="{{ route('projects.create') }}" class="btn btn-primary">
             <i class="bi bi-plus"></i> Add Project
         </a>
-        @include('backend.pages.projects.modal.add_project')
     </div>
     <section class="section">
         <div class="row">

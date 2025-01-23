@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\ProjectCategory;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -21,7 +22,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $categories = ProjectCategory::all();
+        return view('backend.pages.projects.create', compact('categories'));
     }
 
     /**
@@ -29,7 +31,24 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = new Project();
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->short_description = $request->short_description;
+        $project->client_name = $request->client_name;
+        $project->category_id = $request->category_id;
+        $project->technologies = $request->technologies;
+        $project->tools = $request->tools;
+        $project->live_link = $request->live_link;
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/projects/', $filename);
+            $project->image = $filename;
+        }
+        $project->save();
+
+        return redirect()->route('projects.index');
     }
 
     /**
