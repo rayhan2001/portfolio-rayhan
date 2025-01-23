@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProjectCategory;
 use Illuminate\Http\Request;
 
 class ProjectCategoryController extends Controller
@@ -11,15 +12,8 @@ class ProjectCategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.project-categories.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $projectCategories = ProjectCategory::all();
+        return view('backend.pages.project-categories.index', compact('projectCategories'));
     }
 
     /**
@@ -27,23 +21,11 @@ class ProjectCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $projectCategory = new ProjectCategory();
+        $projectCategory->name = $request->name;
+        $projectCategory->save();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return redirect()->back();
     }
 
     /**
@@ -51,7 +33,11 @@ class ProjectCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $projectCate = ProjectCategory::find($id);
+        $projectCate->name = $request->name;
+        $projectCate->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -59,6 +45,9 @@ class ProjectCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $projectCate = ProjectCategory::find($id);
+        $projectCate->delete();
+
+        return redirect()->back();
     }
 }
