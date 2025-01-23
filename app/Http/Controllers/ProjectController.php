@@ -13,7 +13,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with('category')->get();
         return view('backend.pages.projects.index', compact('projects'));
     }
 
@@ -56,7 +56,8 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $project = Project::with('category')->where('id',$id)->first();
+        return view('backend.pages.projects.show', compact('project'));
     }
 
     /**

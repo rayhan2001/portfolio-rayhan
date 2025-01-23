@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('technologies');
             $table->string('tools');
             $table->string('live_link');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

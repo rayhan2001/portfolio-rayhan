@@ -27,48 +27,55 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">#</th>
+                                    <th class="text-center">Image</th>
                                     <th class="text-center">
                                         <b>N</b>ame
                                     </th>
+                                    <th class="text-center">Category</th>
+                                    <th class="text-center">Short Description</th>
+                                    <th class="text-center">Client Name</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($projects as $category)
+                                @foreach ($projects as $project)
                                     <tr class="text-center">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $category->name }}</td>
                                         <td>
-                                            @if ($category->status == 1)
+                                            <img src="{{ asset('uploads/projects/'.$project->image) }}" alt="..." width="50px"
+                                                height="50px" class="rounded-circle">
+                                        </td>
+                                        <td>{{ $project->name }}</td>
+                                        <td>{{ $project->category->name }}</td>
+                                        <td>{{ $project->short_description }}</td>
+                                        <td>{{ $project->client_name }}</td>
+                                        <td>
+                                            @if ($project->status == 1)
                                                 <span class="badge bg-success">Active</span>
                                             @else
                                                 <span class="badge bg-danger">Inactive</span>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#showCategoryModal{{ $category->id }}">
+                                            <a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a href="#" class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#editCategoryModal{{ $category->id }}">
+                                            <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
                                             <a href="#" class="btn btn-danger btn-sm"
-                                                onclick="if(confirm('Are you sure you want to delete this category?')) { event.preventDefault(); document.getElementById('delete-form{{ $category->id }}').submit(); } else { event.preventDefault(); }">
+                                                onclick="if(confirm('Are you sure you want to delete this project?')) { event.preventDefault(); document.getElementById('delete-form{{ $project->id }}').submit(); } else { event.preventDefault(); }">
                                                 <i class="bi bi-trash"></i>
                                             </a>
-                                            <form id="delete-form{{ $category->id }}"
-                                                action="{{ route('project-categories.destroy', $category->id) }}"
+                                            <form id="delete-form{{ $project->id }}"
+                                                action="{{ route('project-categories.destroy', $project->id) }}"
                                                 method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
                                         </td>
                                     </tr>
-                                    @include('backend.pages.project-categories.modal.show_category')
-                                    @include('backend.pages.project-categories.modal.edit_category')
                                 @endforeach
                             </tbody>
                         </table>
