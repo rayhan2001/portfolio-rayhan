@@ -10,8 +10,16 @@
                     <div class="col-md-2">
                         <label for="">Name</label>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-4">
                         <p>{{ $category->name }}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="">Status</label>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="badge {{ $category->status == 1 ? 'bg-success' : 'bg-danger' }}">
+                            {{ $category->status == 1 ? 'Active' : 'Inactive' }}
+                        </span>
                     </div>
                 </div>
             </div>

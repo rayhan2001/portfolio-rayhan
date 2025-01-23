@@ -19,5 +19,5 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('project-categories', ProjectCategoryController::class);
+    Route::resource('project-categories', ProjectCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
 });

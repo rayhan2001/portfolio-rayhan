@@ -56,7 +56,8 @@
                                                 data-bs-target="#editCategoryModal{{ $category->id }}">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-                                            <a href="#" class="btn btn-danger btn-sm" onclick="if(confirm('Are you sure you want to delete this category?')) { event.preventDefault(); document.getElementById('delete-form{{ $category->id }}').submit(); } else { event.preventDefault(); }">
+                                            <a href="#" class="btn btn-danger btn-sm"
+                                                onclick="if(confirm('Are you sure you want to delete this category?')) { event.preventDefault(); document.getElementById('delete-form{{ $category->id }}').submit(); } else { event.preventDefault(); }">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                             <form id="delete-form{{ $category->id }}"
@@ -71,7 +72,7 @@
                                     @include('backend.pages.project-categories.modal.edit_category')
                                 @endforeach
                             </tbody>
-                        </table>                    
+                        </table>
                     </div>
                 </div>
             </div>
