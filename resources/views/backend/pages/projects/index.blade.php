@@ -69,7 +69,7 @@
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                             <form id="delete-form{{ $project->id }}"
-                                                action="{{ route('project-categories.destroy', $project->id) }}"
+                                                action="{{ route('projects.destroy', $project->id) }}"
                                                 method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')

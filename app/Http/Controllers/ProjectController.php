@@ -65,7 +65,9 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $project = Project::where('id',$id)->first();
+        $categories = ProjectCategory::all();
+        return view('backend.pages.projects.edit', compact('project', 'categories'));
     }
 
     /**
@@ -73,7 +75,27 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $project = Project::find($id);
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->short_description = $request->short_description;
+        $project->client_name = $request->client_name;
+        $project->category_id = $request->category_id;
+        $project->technologies = $request->technologies;
+        $project->tools = $request->tools;
+        $project->live_link = $request->live_link;
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            if($project->image != null) {
+                unlink('uploads/projects/' . $project->image);
+            }
+            $file->move('uploads/projects/', $filename);
+            $project->image = $filename;
+        }
+        $project->save();
+
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -81,6 +103,12 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $project = Project::find($id);
+        if($project->image != null) {
+            unlink('uploads/projects/' . $project->image);
+        }
+        $project->delete();
+
+        return redirect()->back();
     }
 }

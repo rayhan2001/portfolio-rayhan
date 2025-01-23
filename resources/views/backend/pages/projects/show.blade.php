@@ -10,9 +10,6 @@
                 <li class="breadcrumb-item active">Project Details</li>
             </ol>
         </nav>
-        <a href="{{ route('projects.create') }}" class="btn btn-primary">
-            <i class="bi bi-plus"></i> Project Details
-        </a>
     </div>
     <section class="section">
         <div class="row">
