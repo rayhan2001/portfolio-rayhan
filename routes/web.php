@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectCategoryController;
 use App\Http\Controllers\ProjectController;
@@ -30,4 +31,5 @@ Route::middleware([
     Route::resource('what-i-do', WhatIDoController::class);
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('service', ServiceController::class);
+    Route::resource('faq', FaqController::class);
 });
