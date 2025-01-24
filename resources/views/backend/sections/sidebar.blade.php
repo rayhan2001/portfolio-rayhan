@@ -21,7 +21,14 @@
                 <i class="bi bi-person-raised-hand"></i>
                 <span>What I Do</span>
             </a>
-        </li><!-- End Profile Page Nav -->
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('testimonial.index') }}">
+                <i class="bi bi-chat-right-quote"></i>
+                <span>Testimonial</span>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
