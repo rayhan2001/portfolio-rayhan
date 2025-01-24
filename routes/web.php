@@ -6,6 +6,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectCategoryController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WhatIDoController;
@@ -32,4 +33,6 @@ Route::middleware([
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('service', ServiceController::class);
     Route::resource('faq', FaqController::class);
+    Route::resource('faq', FaqController::class);
+    Route::resource('resumes', ResumeController::class);
 });

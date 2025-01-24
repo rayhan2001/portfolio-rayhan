@@ -45,6 +45,13 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('resumes.index') }}">
+                <i class="bi bi-layout-text-window-reverse"></i>
+                <span>Resume</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Projects</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
